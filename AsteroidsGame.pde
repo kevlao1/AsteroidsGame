@@ -82,6 +82,7 @@ void keyPressed(){
    if(settings.getMenuSelect() > 4) settings.setMenuSelect(menuNum+1);
        }
   }  
+   if(firstMenu.getopening() == false && secondMenu.getopening() == false && settings.getopening() == true && keyCode == TAB){settings.setopening(false);}
   
   //spaceship movement
   if(key == 'w'){wPressed = true;}
@@ -207,7 +208,7 @@ class settingsMenu extends openingMenu{
     fill(255);
     textSize(fontSize/10);
     textAlign(LEFT);
-    text("Space/Enter to select, Up/Down Arrows or W/S to change options.", horizRes/100, 99*vertRes/100);
+    text("Space/Enter to select, Up/Down Arrows or W/S to change options, TAB to go back.", horizRes/100, 99*vertRes/100);
     textSize(2*fontSize/5);
    }
   }
