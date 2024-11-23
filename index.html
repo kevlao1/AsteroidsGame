@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 	<head>
 		<meta charset="utf-8">
-		<title>Title</title>
+		<title>Asteroid Game (Kevin Lao, 4* CSA)</title>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="styles.css">
 		<script src="processing.js"></script>
 	</head>
 	<body>
 		<header>
-			<h1>Header</h1>
+			<h1>Asteroid Game Coded from Scratch! (Part 1)</h1>
 		</header>
 			<section id="content">
 				<canvas id="AsteroidsGame" data-processing-sources="AsteroidsGame.pde Floater.pde Spaceship.pde Star.pde">
 				</canvas>
 		    </section>
 	    <footer>
-		    Footer
+		    Controls for the menu can be found on the bottom left of the screen.<br>
+		    For the spaceship, WASD to move, E to hyperspace (also given on the placeholder starting page)<br>
+		    NOTE: The stars were intentionally made to refresh every frame for an optical illusion<br>
+		    (As the ship gets faster, the stars behind it appears to follow it :D)<br>
+		    If the ship moves without drifting, it is due to the velocities being linked when the spaceship was coded. <br>
+		    (To Mr. Chan: I coded all of this myself without regard to the other .pde files, everything will be found in AsteroidsGame.pde.<br>
+		    Yes,  that means I did not use the floater class and designed the ship movement myself; I wanted to code everything from scratch :p)
+		    
 	    </footer>
 	</body>
 </html>
