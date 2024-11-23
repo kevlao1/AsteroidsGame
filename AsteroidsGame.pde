@@ -28,7 +28,6 @@ void draw(){
   mothership.show();
   mothership.move();
   mothership.hyperspace();
-  println(mothership.shipSpeed + ", " + millis() + ", " + background.getNumStars() + ", " + settings.getMenuSelect());
 }
 
 void keyPressed(){
