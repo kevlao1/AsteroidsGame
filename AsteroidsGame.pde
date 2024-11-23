@@ -6,7 +6,7 @@ int vertRes = 1080;
 openingMenu firstMenu = new openingMenu();
 starterMenu secondMenu = new starterMenu();
 settingsMenu settings = new settingsMenu();
-backgroundStars background = new backgroundStars();
+backgroundStars theBackground = new backgroundStars();
 spaceship mothership = new spaceship();
 
 //other random variables that need to be global
@@ -21,7 +21,7 @@ void setup(){
 }
 
 void draw(){
-  background.displayBackground();
+  theBackground.displayBackground();
   secondMenu.showMenu();
   firstMenu.showMenu();
   settings.showMenu();
