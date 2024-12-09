@@ -356,7 +356,7 @@ class settingsMenu extends openingMenu{
    }
   }
 }
-/* (still a work in progress, 12/9/24)
+// (still a work in progress, 12/9/24)
 class settingsSubMenu extends openingMenu{
   settingsSubMenu(){ 
   opening = false;
@@ -388,7 +388,7 @@ class settingsSubMenu extends openingMenu{
     }
     }
 }
-*/
+
 
 //individual star
 
