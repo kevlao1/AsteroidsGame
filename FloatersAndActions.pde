@@ -19,10 +19,13 @@ class spaceship extends fineHeresYourFloater{
  private float velocityX, velocityY;
  private int velocityMethod;
  public void setvelocityMethod(int i){velocityMethod = i;}
+ public int getvelocityMethod(){return velocityMethod;}
  public float getshipSpeed(){return shipSpeed;}
  public float getshipX(){return shipX;}
  public float getshipY(){return shipY;}
  public float getshipAngle(){return shipAngle;}
+ public float getvelocityX(){return velocityX;}
+ public float getvelocityY(){return velocityY;}
  
   spaceship(){
   shipX = horizRes/2;
@@ -136,28 +139,36 @@ class spaceship extends fineHeresYourFloater{
  class allAsteroids{
    private int numOfAsteroids;
    public int getnumOfAsteroids(){return numOfAsteroids+1;}
-   public float hitboxRatio;
+   private float hitboxRatio;
    public float gethitboxRatio(){return hitboxRatio;}
    public void sethitboxRatio(float i){hitboxRatio = i;}
+   private boolean asteroidStarterOn;
    protected ArrayList<indivAsteroid> allOfTheAsteroids;
    allAsteroids(){
     numOfAsteroids = (int)(Math.random()*21)+5;
     hitboxRatio = 1.0;
+    asteroidStarterOn = false;
     allOfTheAsteroids = new ArrayList<indivAsteroid>();
     for(int i = 0; i <= numOfAsteroids; i++){
     allOfTheAsteroids.add(new indivAsteroid());}
    }
    public void asteroidStarter(boolean i){
+     asteroidStarterOn = i;
      if(i == true){
        for(int a = 0; a < allOfTheAsteroids.size(); a++){allOfTheAsteroids.get(a).setonOrOff(true);}
-      } 
+     }
+     if(i == false){
+       for(int a = 0; a < allOfTheAsteroids.size(); a++){allOfTheAsteroids.get(a).setonOrOff(false);}
+      }     
    }
    
    public void asteroidAdd(){
     allOfTheAsteroids.add(new indivAsteroid());
+    if(asteroidStarterOn == true){
     allOfTheAsteroids.get(allOfTheAsteroids.size()-1).setonOrOff(true);
     allOfTheAsteroids.get(allOfTheAsteroids.size()-1).show();
     allOfTheAsteroids.get(allOfTheAsteroids.size()-1).move();
+    }
     numOfAsteroids++;
    }
    
@@ -243,10 +254,13 @@ class spaceship extends fineHeresYourFloater{
     allOfTheBullets = new ArrayList<indivBullet>();
    }
    public void bulletStarter(boolean i){
-     bulletStarterOn = true;
+     bulletStarterOn = i;
      if(i == true){
        for(int a = 0; a < allOfTheBullets.size(); a++){allOfTheBullets.get(a).setonOrOff(true);}
       } 
+     if(i == false){
+       for(int a = 0; a < allOfTheBullets.size(); a++){allOfTheBullets.get(a).setonOrOff(false);}
+     }
    }
    
    public void bulletAdd(float angle, float x, float y, float speed){
@@ -260,7 +274,7 @@ class spaceship extends fineHeresYourFloater{
    
    public void bulletActions(){
      if(bulletStarterOn == true){
-    for(int i = 0; i < allOfTheBullets.size(); i++  ){
+    for(int i = 0; i < allOfTheBullets.size(); i++){
      allOfTheBullets.get(i).show();
      allOfTheBullets.get(i).move();
      if(allOfTheBullets.get(i).getdisplacement() >= 750*scaling){allOfTheBullets.remove(allOfTheBullets.get(i));}
