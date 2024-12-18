@@ -201,7 +201,7 @@ if(i >= 0 && i <= 2) {option = i;}
    }
   }
 }
- //(still a work in progress, 12/9/24)
+
 class settingsSubMenu extends openingMenu{
   private int option, asteroidFont, asteroidNum;
   public void setasteroidFont(int a){if(a>=0)asteroidFont = a;}
