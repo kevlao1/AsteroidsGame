@@ -139,7 +139,7 @@ else if(subMenu.getoption() == 2){
   //gameplay
   if(firstMenu.getopening() == false && secondMenu.getopening() == false && settings.getopening() == false){
   if(keyCode == ALT){asteroidField.asteroidAdd();}
-  if(keyCode == TAB || keyCode == BACKSPACE){
+  if(keyCode == TAB || keyCode == BACKSPACE || key == 'b'){
   firstMenu.setopening(true);
   mothership.setonOrOff(false);
   asteroidField.asteroidStarter(false);
@@ -174,13 +174,13 @@ else if(subMenu.getoption() == 2){
   }
   //submenu
     if(firstMenu.getopening() == false && secondMenu.getopening() == false &&  settings.getopening() == true && subMenu.getopening() == false){
-      if(keyCode == TAB || keyCode == BACKSPACE || key = 'b'){
+      if(keyCode == TAB || keyCode == BACKSPACE || key == 'b'){
     settings.setopening(false); 
     firstMenu.setopening(true);
       }
     }
   if(firstMenu.getopening() == false && secondMenu.getopening() == false &&  settings.getopening() == true && subMenu.getopening() == true){
-  if(keyCode == TAB || keyCode == BACKSPACE || key = 'b'){
+  if(keyCode == TAB || keyCode == BACKSPACE || key == 'b'){
   subMenu.setopening(false);
   settings.setSubMenu(false);
   }
