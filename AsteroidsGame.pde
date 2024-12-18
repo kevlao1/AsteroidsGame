@@ -174,13 +174,13 @@ else if(subMenu.getoption() == 2){
   }
   //submenu
     if(firstMenu.getopening() == false && secondMenu.getopening() == false &&  settings.getopening() == true && subMenu.getopening() == false){
-      if(keyCode == TAB || keyCode == BACKSPACE){
+      if(keyCode == TAB || keyCode == BACKSPACE || key = 'b'){
     settings.setopening(false); 
     firstMenu.setopening(true);
       }
     }
   if(firstMenu.getopening() == false && secondMenu.getopening() == false &&  settings.getopening() == true && subMenu.getopening() == true){
-  if(keyCode == TAB || keyCode == BACKSPACE){
+  if(keyCode == TAB || keyCode == BACKSPACE || key = 'b'){
   subMenu.setopening(false);
   settings.setSubMenu(false);
   }
