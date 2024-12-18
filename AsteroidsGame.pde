@@ -19,23 +19,24 @@ settingsSubMenu subMenu = new settingsSubMenu();
 allAsteroids asteroidField = new allAsteroids();
 allBullets magazine = new allBullets();
 inGameMenu gameMenu = new inGameMenu();
+debugMenu debugCorner = new debugMenu();
 
 
 void setup(){
- size(1920, 1080); 
+ size(3840, 2160); 
  frameRate(frameRateVar);
 }
 
 void draw(){
+  fontSize = horizRes/7;
   theBackground.displayBackground();
   secondMenu.showMenu();
   firstMenu.showMenu();
   settings.showMenu();
   subMenu.showMenu();
-  if(altPressed == true){asteroidField.asteroidAdd();}
   for(int i = 0; i < magazine.allOfTheBullets.size(); i++){
     for(int a = 0; a < asteroidField.allOfTheAsteroids.size(); a++){
-   if(dist(magazine.allOfTheBullets.get(i).getshipX(), magazine.allOfTheBullets.get(i).getshipY(), asteroidField.allOfTheAsteroids.get(a).getshipX(), asteroidField.allOfTheAsteroids.get(a).getshipY()) <= 50*scaling*asteroidField.gethitboxRatio()){
+   if(i < magazine.allOfTheBullets.size() && a < asteroidField.allOfTheAsteroids.size() && dist(magazine.allOfTheBullets.get(i).getshipX(), magazine.allOfTheBullets.get(i).getshipY(), asteroidField.allOfTheAsteroids.get(a).getshipX(), asteroidField.allOfTheAsteroids.get(a).getshipY()) <= 50*scaling*asteroidField.gethitboxRatio()){
    magazine.allOfTheBullets.remove(i);
    if(i>0){i--;}
    asteroidField.allOfTheAsteroids.remove(a);
@@ -53,10 +54,10 @@ void draw(){
   mothership.hyperspace();
   gameMenu.showMenu();
   magazine.bulletCounter();
-  println(mothership.shipSpeed + ", " + millis() + ", " + frameCount + ", " + settings.getMenuSelect() + ", " + asteroidField.getnumOfAsteroids());
   firstMenu.crasherMoment();
   settings.setasteroidNum(asteroidField.getnumOfAsteroids());
   subMenu.setasteroidNum(asteroidField.getnumOfAsteroids());
+  debugCorner.debugIndication(firstMenu.getMenuSelect(), settings.getMenuSelect(), subMenu.getMenuSelect(), mothership.getshipX(), mothership.getshipY(), mothership.getvelocityMethod(), mothership.getshipSpeed(), mothership.getvelocityX(), mothership.getvelocityY(), mothership.getshipAngle(), asteroidField.getnumOfAsteroids(), scaling, horizRes, vertRes, fontSize, frameRateVar);
 }
 
 void keyPressed(){
@@ -78,7 +79,10 @@ void keyPressed(){
   if(keyCode == DOWN || key == 's'){subMenu.setoption(subMenu.getoption()+1);} 
   }
   if(subMenu.getMenuSelect() == 0){
-  if(subMenu.getoption() == 0){}  
+  if(subMenu.getoption() == 0){
+  if(keyCode == LEFT || key == 'a'){horizRes-=16; vertRes-=9;}   
+  if(keyCode == RIGHT || key == 'd'){horizRes+=16; vertRes+=9;}
+}  
   if(subMenu.getoption() == 1){
    if(keyCode == LEFT || key == 'a'){if(frameRateVar > 1){frameRateVar--; frameRate(frameRateVar);}}
    if(keyCode == RIGHT || key == 'd'){frameRateVar++; frameRate(frameRateVar);}
@@ -116,7 +120,10 @@ else if(subMenu.getoption() == 2){
    if(keyCode == RIGHT || key == 'd'){theBackground.setframeInterval(theBackground.getframeInterval()+1); subMenu.setframeInterval(subMenu.getframeInterval()+1); settings.setframeInterval(settings.getframeInterval()+1);}
 }
 }
-  else if(subMenu.getMenuSelect() == 4){}
+  else if(subMenu.getMenuSelect() == 4){
+  if(keyCode == LEFT || key == 'a'){debugCorner.setdebugToggle(false); subMenu.setdebugToggle(false); settings.setdebugToggle(false);}   
+  if(keyCode == RIGHT || key == 'd'){debugCorner.setdebugToggle(true); subMenu.setdebugToggle(true); settings.setdebugToggle(true);}
+  }
   }
   
   //starter menu
@@ -129,7 +136,18 @@ else if(subMenu.getoption() == 2){
   gameMenu.setopening(true);
     }
 }
-
+  //gameplay
+  if(firstMenu.getopening() == false && secondMenu.getopening() == false && settings.getopening() == false){
+  if(keyCode == ALT){asteroidField.asteroidAdd();}
+  if(keyCode == TAB || keyCode == BACKSPACE){
+  firstMenu.setopening(true);
+  mothership.setonOrOff(false);
+  asteroidField.asteroidStarter(false);
+  magazine.bulletStarter(false);
+  gameMenu.setopening(false);
+  }
+  }
+  
   //main/opening menu
   if(firstMenu.getopening() == true && firstMenu.getMenuSelect() == 2){
   if(keyCode == ENTER || key == ' '){firstMenu.setcrasher(true);}
@@ -138,6 +156,8 @@ else if(subMenu.getoption() == 2){
    if(key == ' ' || keyCode == ENTER){
   firstMenu.setopening(false); 
   secondMenu.setopening(true);
+  magazine.bulletStarter(false);
+  asteroidField.asteroidStarter(false);
   }
 }
   if(firstMenu.getopening() == true && secondMenu.getopening() == false){
@@ -153,13 +173,17 @@ else if(subMenu.getoption() == 2){
     }
   }
   //submenu
-    if(firstMenu.getopening() == false && secondMenu.getopening() == false &&  settings.getopening() == true && subMenu.getopening() == false && keyCode == TAB){
+    if(firstMenu.getopening() == false && secondMenu.getopening() == false &&  settings.getopening() == true && subMenu.getopening() == false){
+      if(keyCode == TAB || keyCode == BACKSPACE){
     settings.setopening(false); 
     firstMenu.setopening(true);
+      }
     }
-  if(firstMenu.getopening() == false && secondMenu.getopening() == false &&  settings.getopening() == true && subMenu.getopening() == true && keyCode == TAB){
+  if(firstMenu.getopening() == false && secondMenu.getopening() == false &&  settings.getopening() == true && subMenu.getopening() == true){
+  if(keyCode == TAB || keyCode == BACKSPACE){
   subMenu.setopening(false);
   settings.setSubMenu(false);
+  }
 }
   if(firstMenu.getopening() == false && secondMenu.getopening() == false && settings.getopening() == true && subMenu.getopening() == false){
     if(keyCode == ENTER || key == ' '){
