@@ -407,7 +407,7 @@ public void showMenu(){
  textAlign(LEFT);
  fill(255);
  textSize(fontSize/14);
- text("WASD: movement           R: Reload\nE: Hyperspace                TAB/Backspace: Main Menu\nALT: Spawn Asteroid\nSpace: Shoot Bullet", 17*horizRes/64, 29*vertRes/32);
+ text("WASD: movement         R: Reload\nE: Hyperspace              TAB/Backspace/B: Main Menu\nALT: Spawn Asteroid\nSpace: Shoot Bullet", 17*horizRes/64, 29*vertRes/32);
  }
 }
 }
