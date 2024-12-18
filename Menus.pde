@@ -196,7 +196,7 @@ if(i >= 0 && i <= 2) {option = i;}
     fill(255);
     textSize(fontSize/10);
     textAlign(LEFT);
-    text("Space/Enter to select, Up/Down or W/S to change settings menus, Left/Right or A/D to change options, TAB/Backspace to go back.", horizRes/100, 99*vertRes/100);
+    text("Space/Enter to select, Up/Down or W/S to change settings menus, Left/Right or A/D to change options, TAB/Backspace/B to go back.", horizRes/100, 99*vertRes/100);
     textSize(2*fontSize/5);
    }
   }
